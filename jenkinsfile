@@ -6,19 +6,19 @@ pipeline {
     stages {
         stage('Build') {
             steps { 
-                sh'pip3install--userpipenv'
-                sh'/bitnami/jenkins/home/.local/bin/pipenv --rm||exit0'
-                sh'/bitnami/jenkins/home/.local/bin/pip env install'
+                sh'pip3 install --user pipenv'
+                sh'/bitnami/jenkins/home/.local/bin/pipenv --rm || exit0'
+                sh'/bitnami/jenkins/home/.local/bin/pipenv install'
             }
         }
         stage('Test') {
             steps {
-                sh'/bitnami/jenkins/home/.local/bin/pip env run pytest'
+                sh'/bitnami/jenkins/home/.local/bin/pipenv run pytest'
             }
         }
         stage('Package') {
             steps {
-                sh 'zip-r retailproject.zip.'
+                sh 'zip -r retailproject.zip.'
             }
         }
         stage('Deploy') {
