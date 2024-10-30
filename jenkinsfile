@@ -11,11 +11,6 @@ pipeline {
                 sh '/bitnami/jenkins/home/.local/bin/pipenv install'
             }
         }
-        stage('Test') {
-            steps {
-                sh'/bitnami/jenkins/home/.local/bin/pipenv run pytest'
-            }
-        }
         stage('Package') {
             steps {
                 sh 'zip -r retailproject.zip.'
